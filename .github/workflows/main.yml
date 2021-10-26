@@ -1,4 +1,4 @@
-name: Snyk SCA, Code, IaC and Container CLI monitor (no breaking)
+name: Snyk SCA, Code, IaC and Container CLI monitor (no pipeline break)
 
 on:
   push:
