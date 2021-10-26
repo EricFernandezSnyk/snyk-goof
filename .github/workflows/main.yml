@@ -1,4 +1,4 @@
-name: Snyk SCA, Code, IaC and Container CLI monitor (no pipeline break)
+name: Snyk SCA, Code, IaC and Container CLI monitor example
 
 on:
   push:
@@ -30,23 +30,17 @@ jobs:
         npm install snyk -g
         npm install snyk-to-html -g
         snyk auth ${{secrets.SNYK_AUTH}}
-    - name: Snyk Open Source
+    - name: Snyk Open Source # For testing and failing please add snyk test before snyk cmonitor
       run: |
         snyk monitor
-    - name: Snyk Code
+    - name: Snyk Code # Remove || true to fail if there are vulnerabilities
       run: |
-        snyk code monitor
-    - name: Snyk Container
+        snyk code test || true 
+    - name: Snyk Container # Rename your image, for testing and failing please add snyk container test before snyk container monitor
       run: |
         docker build . -t yourimage:tag
         snyk container monitor yourimage:tag --file=Dockerfile
-    - name: Snyk IaC
+    - name: Snyk IaC # Remove || true to fail if there are vulnerabilities
       run: |
         snyk iac test || true 
-    
-    - name: Upload production-ready build files
-      uses: actions/upload-artifact@v2
-      with:
-        name: production-files
-        path: ./build
         
