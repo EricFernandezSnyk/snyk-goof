@@ -1,0 +1,55 @@
+name: Snyk SCA, Code, IaC and Container CLI monitor (no breaking)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: Test and build
+    environment: snyk-npm
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        
+    - name: Setup Snyk + snyk-to-html
+      run: |
+        npm install snyk -g
+        npm install snyk-to-html -g
+        snyk auth ${{secrets.SNYK_AUTH}}
+    - name: Snyk Open Source
+      run: |
+        snyk monitor
+    - name: Snyk Code
+      run: |
+        snyk code monitor
+    - name: Snyk Container
+      run: |
+        docker build . -t yourimage:tag
+        snyk container monitor yourimage:tag --file=Dockerfile
+    - name: Snyk IaC
+      run: |
+        snyk iac test || true 
+    
+    - name: Build
+      run: npm run build
+    
+    - name: Upload production-ready build files
+      uses: actions/upload-artifact@v2
+      with:
+        name: production-files
+        path: ./build
+        
