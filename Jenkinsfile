@@ -9,6 +9,7 @@ pipeline {
     stage('Build') {
       steps {
         snykSecurity(snykTokenId: 'snyk-api', snykInstallation: 'Snyk-test')
+        sh 'npm install -g'
       }
     }
 
