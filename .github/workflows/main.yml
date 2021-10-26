@@ -2,9 +2,9 @@ name: Snyk SCA, Code, IaC and Container CLI monitor (no breaking)
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
   build:
