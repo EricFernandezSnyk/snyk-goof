@@ -32,9 +32,9 @@ jobs:
     - name: Setup Serverless
       run: |
         npm install -g serverless
-    - name: Serverless test
+    - name: Serverless test # Remove || true to fail on build
       run: |
         cd iac/aws-node
         serverless package --package serverless-artifacts
         cd ../..
-        snyk iac test
+        snyk iac test || true 
