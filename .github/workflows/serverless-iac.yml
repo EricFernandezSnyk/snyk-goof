@@ -29,6 +29,9 @@ jobs:
         npm install snyk -g
         npm install snyk-to-html -g
         snyk auth ${{secrets.SNYK_AUTH}}
+    - name: Setup Serverless
+      run: |
+        npm install -g serverless
     - name: Serverless test
       run: |
         cd iac/aws-node
