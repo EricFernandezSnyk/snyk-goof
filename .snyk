@@ -9,5 +9,5 @@ patch:
 exclude:
   global:
     - iac/public_access.tf
-    - index.js
+    - iac
   
