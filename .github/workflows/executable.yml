@@ -27,7 +27,7 @@ jobs:
         
     - name: Setup Snyk + snyk-to-html
       run: |
-        curl https://static.snyk.io/cli/latest/snyk-macos -o snyk
+        curl https://static.snyk.io/cli/latest/snyk-linux -o snyk
         chmod +x ./snyk
         mv ./snyk /usr/local/bin/
         ./snyk auth ${{secrets.SNYK_AUTH}}
