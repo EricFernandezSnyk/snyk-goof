@@ -30,4 +30,4 @@ jobs:
         snyk auth ${{secrets.SNYK_AUTH}}
     - name: Serverless test # Remove || true to fail on build, output in CLI
       run: |
-        snyk iac test --report --project-name=test
+        snyk iac test --report --target-reference=test
