@@ -1,0 +1,41 @@
+name: Snyk Executable Full plat
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    name: Test and build
+    environment: snyk-npm
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        
+    - name: Setup Snyk + snyk-to-html
+      run: |
+        curl https://static.snyk.io/cli/latest/snyk-linux -o snyk
+        chmod +x ./snyk
+        ./snyk auth ${{secrets.SNYK_AUTH}}
+    - name: Snyk Open Source # For testing and failing please add snyk test before snyk cmonitor
+      run: |
+        ./snyk test --json > output.json
+    
+    - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v1
+        with:
+          message: output.json
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
