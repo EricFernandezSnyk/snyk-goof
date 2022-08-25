@@ -36,4 +36,4 @@ jobs:
           SNYK_TOKEN: ${{secrets.SNYK_AUTH}}
       with:
         command: test
-        continue-on-error: true
+        args: --severity-threshold=critical
