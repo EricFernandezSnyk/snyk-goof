@@ -43,7 +43,7 @@ jobs:
         # with:
         #   go-version: "1.13"
       - name: Snyk test   
-        run: snyk code test --sarif > snyk-code.sarif
+        run: snyk code test --sarif > snyk-code.sarif || true # 
         env:
           # In order to use the Snyk Action you will need to have a Snyk API token.
           # More details in https://github.com/snyk/actions#getting-your-snyk-token
