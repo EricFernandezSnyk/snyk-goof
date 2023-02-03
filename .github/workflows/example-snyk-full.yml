@@ -14,10 +14,10 @@ name: Snyk Security
 
 on:
   push:
-    branches: [ $default-branch, $protected-branches ]
+    branches: [ master ]
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: [ $default-branch ]
+    branches: [ master ]
   workflow_dispatch:
 
 permissions:
@@ -38,18 +38,20 @@ jobs:
         continue-on-error: true
         uses: snyk/actions/setup@master
         # For Snyk Open Source you must first set up the development environment for your application's dependencies
-        # For example for Go 
-        # uses: actions/setup-go@v1
-        # with:
-        #   go-version: "1.13"
-      - name: Snyk test   
-        run: snyk code test --sarif > snyk-code.sarif || true # 
+        # For example for Node
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
         env:
           # In order to use the Snyk Action you will need to have a Snyk API token.
           # More details in https://github.com/snyk/actions#getting-your-snyk-token
           # or you can signup for free at https://snyk.io/login
           SNYK_TOKEN: ${{ secrets.SNYK_AUTH }}
+      - name: Snyk Code test   
+        run: snyk code test --sarif > snyk-code.sarif || true # 
+      - name: Snyk IaC test
+        run: snyk iac test --sarif > snyk-iac.sarif || true
       - name: Upload result to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v2
         with:
-          sarif_file: snyk-code.sarif
+          sarif_file: snyk-code.sarif, snyk-iac.sarif
