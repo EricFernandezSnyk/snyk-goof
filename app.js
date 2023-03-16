@@ -71,8 +71,8 @@ if (app.get('env') == 'development') {
   app.use(errorHandler());
 }
 
-var securetoken;
-var token = securetoken;
+var secret;
+var token = secret;
 console.log('token: ' + token);
 
 http.createServer(app).listen(app.get('port'), function () {

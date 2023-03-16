@@ -1,4 +1,4 @@
-name: Snyk Serverless Framework Snyk IaC Test
+name: Snyk IaC Report
 on:
   push:
     branches: [ master ]
@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: Test and build with serverless
+    name: Test and build
     environment: snyk-npm
     runs-on: ubuntu-latest
 
@@ -27,20 +27,7 @@ jobs:
     - name: Setup Snyk
       run: |
         npm install snyk -g
-        npm install snyk-to-html -g
         snyk auth ${{secrets.SNYK_AUTH}}
-    - name: Setup Serverless
-      run: |
-        npm install -g serverless
     - name: Serverless test # Remove || true to fail on build, output in CLI
       run: |
-        cd iac/aws-node
-        serverless package --package serverless-artifacts
-        cd ../..
-        snyk iac test || true 
-    #- name: Serverless test # Remove || true to fail on build, output in json file
-    #  run: |
-    #    cd iac/aws-node
-    #    serverless package --package serverless-artifacts
-    #    cd ../..
-    #    snyk iac test || true > results.json
+        snyk iac test --report --target-reference=test

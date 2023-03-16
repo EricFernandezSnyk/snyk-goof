@@ -1,4 +1,5 @@
-name: Snyk Serverless Framework Snyk IaC Test
+name: Snyk SCA, Code, IaC and Container CLI monitor example
+
 on:
   push:
     branches: [ master ]
@@ -7,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Test and build with serverless
+    name: Test and build
     environment: snyk-npm
     runs-on: ubuntu-latest
 
@@ -24,23 +25,17 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
         
-    - name: Setup Snyk
+    - name: Setup Snyk + snyk-to-html
       run: |
         npm install snyk -g
         npm install snyk-to-html -g
         snyk auth ${{secrets.SNYK_AUTH}}
-    - name: Setup Serverless
+    - name: Snyk Open Source # For testing and failing please add snyk test before snyk cmonitor
       run: |
-        npm install -g serverless
-    - name: Serverless test # Remove || true to fail on build, output in CLI
-      run: |
-        cd iac/aws-node
-        serverless package --package serverless-artifacts
-        cd ../..
-        snyk iac test || true 
-    #- name: Serverless test # Remove || true to fail on build, output in json file
-    #  run: |
-    #    cd iac/aws-node
-    #    serverless package --package serverless-artifacts
-    #    cd ../..
-    #    snyk iac test || true > results.json
+        snyk test --json > output.json
+
+    - name: Comment PR
+      uses: thollander/actions-comment-pull-request@v1
+      with:
+        message: output.json
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
