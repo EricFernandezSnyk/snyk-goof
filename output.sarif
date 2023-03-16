@@ -1,0 +1,407 @@
+{
+  "$schema" : "https://json.schemastore.org/sarif-2.1.0.json",
+  "version" : "2.1.0",
+  "runs" : [ {
+    "tool" : {
+      "driver" : {
+        "name" : "CodeQL",
+        "organization" : "GitHub",
+        "semanticVersion" : "2.11.6",
+        "rules" : [ {
+          "id" : "js/command-line-injection",
+          "name" : "js/command-line-injection",
+          "shortDescription" : {
+            "text" : "Uncontrolled command line"
+          },
+          "fullDescription" : {
+            "text" : "Using externally controlled strings in a command line may allow a malicious user to change the meaning of the command."
+          },
+          "defaultConfiguration" : {
+            "enabled" : true,
+            "level" : "error"
+          },
+          "properties" : {
+            "tags" : [ "correctness", "security", "external/cwe/cwe-078", "external/cwe/cwe-088" ],
+            "description" : "Using externally controlled strings in a command line may allow a malicious\n              user to change the meaning of the command.",
+            "id" : "js/command-line-injection",
+            "kind" : "path-problem",
+            "name" : "Uncontrolled command line",
+            "precision" : "high",
+            "problem.severity" : "error",
+            "security-severity" : "9.8"
+          }
+        }, {
+          "id" : "js/indirect-command-line-injection",
+          "name" : "js/indirect-command-line-injection",
+          "shortDescription" : {
+            "text" : "Indirect uncontrolled command line"
+          },
+          "fullDescription" : {
+            "text" : "Forwarding command-line arguments to a child process executed within a shell may indirectly introduce command-line injection vulnerabilities."
+          },
+          "defaultConfiguration" : {
+            "enabled" : true,
+            "level" : "warning"
+          },
+          "properties" : {
+            "tags" : [ "correctness", "security", "external/cwe/cwe-078", "external/cwe/cwe-088" ],
+            "description" : "Forwarding command-line arguments to a child process\n              executed within a shell may indirectly introduce\n              command-line injection vulnerabilities.",
+            "id" : "js/indirect-command-line-injection",
+            "kind" : "path-problem",
+            "name" : "Indirect uncontrolled command line",
+            "precision" : "medium",
+            "problem.severity" : "warning",
+            "security-severity" : "6.3"
+          }
+        }, {
+          "id" : "js/second-order-command-line-injection",
+          "name" : "js/second-order-command-line-injection",
+          "shortDescription" : {
+            "text" : "Second order command injection"
+          },
+          "fullDescription" : {
+            "text" : "Using user-controlled data as arguments to some commands, such as git clone, can allow arbitrary commands to be executed."
+          },
+          "defaultConfiguration" : {
+            "enabled" : true,
+            "level" : "error"
+          },
+          "properties" : {
+            "tags" : [ "correctness", "security", "external/cwe/cwe-078", "external/cwe/cwe-088" ],
+            "description" : "Using user-controlled data as arguments to some commands, such as git clone,\n              can allow arbitrary commands to be executed.",
+            "id" : "js/second-order-command-line-injection",
+            "kind" : "path-problem",
+            "name" : "Second order command injection",
+            "precision" : "high",
+            "problem.severity" : "error",
+            "security-severity" : "7.0"
+          }
+        }, {
+          "id" : "js/shell-command-injection-from-environment",
+          "name" : "js/shell-command-injection-from-environment",
+          "shortDescription" : {
+            "text" : "Shell command built from environment values"
+          },
+          "fullDescription" : {
+            "text" : "Building a shell command string with values from the enclosing environment may cause subtle bugs or vulnerabilities."
+          },
+          "defaultConfiguration" : {
+            "enabled" : true,
+            "level" : "warning"
+          },
+          "properties" : {
+            "tags" : [ "correctness", "security", "external/cwe/cwe-078", "external/cwe/cwe-088" ],
+            "description" : "Building a shell command string with values from the enclosing\n              environment may cause subtle bugs or vulnerabilities.",
+            "id" : "js/shell-command-injection-from-environment",
+            "kind" : "path-problem",
+            "name" : "Shell command built from environment values",
+            "precision" : "high",
+            "problem.severity" : "warning",
+            "security-severity" : "6.3"
+          }
+        }, {
+          "id" : "js/shell-command-constructed-from-input",
+          "name" : "js/shell-command-constructed-from-input",
+          "shortDescription" : {
+            "text" : "Unsafe shell command constructed from library input"
+          },
+          "fullDescription" : {
+            "text" : "Using externally controlled strings in a command line may allow a malicious user to change the meaning of the command."
+          },
+          "defaultConfiguration" : {
+            "enabled" : true,
+            "level" : "error"
+          },
+          "properties" : {
+            "tags" : [ "correctness", "security", "external/cwe/cwe-078", "external/cwe/cwe-088" ],
+            "description" : "Using externally controlled strings in a command line may allow a malicious\n              user to change the meaning of the command.",
+            "id" : "js/shell-command-constructed-from-input",
+            "kind" : "path-problem",
+            "name" : "Unsafe shell command constructed from library input",
+            "precision" : "high",
+            "problem.severity" : "error",
+            "security-severity" : "6.3"
+          }
+        }, {
+          "id" : "js/unnecessary-use-of-cat",
+          "name" : "js/unnecessary-use-of-cat",
+          "shortDescription" : {
+            "text" : "Unnecessary use of `cat` process"
+          },
+          "fullDescription" : {
+            "text" : "Using the `cat` process to read a file is unnecessarily complex, inefficient, unportable, and can lead to subtle bugs, or even security vulnerabilities."
+          },
+          "defaultConfiguration" : {
+            "enabled" : true,
+            "level" : "error"
+          },
+          "properties" : {
+            "tags" : [ "correctness", "security", "maintainability", "external/cwe/cwe-078" ],
+            "description" : "Using the  `cat` process to read a file is unnecessarily complex, inefficient, unportable, and can lead to subtle bugs, or even security vulnerabilities.",
+            "id" : "js/unnecessary-use-of-cat",
+            "kind" : "problem",
+            "name" : "Unnecessary use of `cat` process",
+            "precision" : "high",
+            "problem.severity" : "error",
+            "security-severity" : "6.3"
+          }
+        } ]
+      },
+      "extensions" : [ {
+        "name" : "legacy-upgrades",
+        "semanticVersion" : "0.0.0",
+        "locations" : [ {
+          "uri" : "file:///Users/ericfernandez/Documents/practice/codeql/legacy-upgrades/",
+          "description" : {
+            "text" : "The QL pack root directory."
+          }
+        }, {
+          "uri" : "file:///Users/ericfernandez/Documents/practice/codeql/legacy-upgrades/qlpack.yml",
+          "description" : {
+            "text" : "The QL pack definition file."
+          }
+        } ]
+      }, {
+        "name" : "codeql/javascript-queries",
+        "semanticVersion" : "0.4.6-dev+d7e44a5426783594450cd3c6786069512dc747cc",
+        "locations" : [ {
+          "uri" : "file:///Users/ericfernandez/Documents/snyk/SecurityShepherd/codeql/javascript/ql/src/",
+          "description" : {
+            "text" : "The QL pack root directory."
+          }
+        }, {
+          "uri" : "file:///Users/ericfernandez/Documents/snyk/SecurityShepherd/codeql/javascript/ql/src/qlpack.yml",
+          "description" : {
+            "text" : "The QL pack definition file."
+          }
+        } ]
+      } ]
+    },
+    "artifacts" : [ {
+      "location" : {
+        "uri" : "routes/index.js",
+        "uriBaseId" : "%SRCROOT%",
+        "index" : 0
+      }
+    } ],
+    "results" : [ {
+      "ruleId" : "js/command-line-injection",
+      "ruleIndex" : 0,
+      "rule" : {
+        "id" : "js/command-line-injection",
+        "index" : 0
+      },
+      "message" : {
+        "text" : "This command line depends on a [user-provided value](1)."
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "routes/index.js",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 0
+          },
+          "region" : {
+            "startLine" : 88,
+            "startColumn" : 10,
+            "endColumn" : 27
+          }
+        }
+      } ],
+      "partialFingerprints" : {
+        "primaryLocationLineHash" : "991e9a0753e9f429:1",
+        "primaryLocationStartColumnFingerprint" : "5"
+      },
+      "codeFlows" : [ {
+        "threadFlows" : [ {
+          "locations" : [ {
+            "location" : {
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "routes/index.js",
+                  "uriBaseId" : "%SRCROOT%",
+                  "index" : 0
+                },
+                "region" : {
+                  "startLine" : 81,
+                  "startColumn" : 14,
+                  "endColumn" : 22
+                }
+              },
+              "message" : {
+                "text" : "req.body"
+              }
+            }
+          }, {
+            "location" : {
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "routes/index.js",
+                  "uriBaseId" : "%SRCROOT%",
+                  "index" : 0
+                },
+                "region" : {
+                  "startLine" : 81,
+                  "startColumn" : 14,
+                  "endColumn" : 30
+                }
+              },
+              "message" : {
+                "text" : "req.body.content"
+              }
+            }
+          }, {
+            "location" : {
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "routes/index.js",
+                  "uriBaseId" : "%SRCROOT%",
+                  "index" : 0
+                },
+                "region" : {
+                  "startLine" : 81,
+                  "startColumn" : 7,
+                  "endColumn" : 30
+                }
+              },
+              "message" : {
+                "text" : "item"
+              }
+            }
+          }, {
+            "location" : {
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "routes/index.js",
+                  "uriBaseId" : "%SRCROOT%",
+                  "index" : 0
+                },
+                "region" : {
+                  "startLine" : 84,
+                  "startColumn" : 15,
+                  "endColumn" : 19
+                }
+              },
+              "message" : {
+                "text" : "item"
+              }
+            }
+          }, {
+            "location" : {
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "routes/index.js",
+                  "uriBaseId" : "%SRCROOT%",
+                  "index" : 0
+                },
+                "region" : {
+                  "startLine" : 84,
+                  "startColumn" : 15,
+                  "endColumn" : 35
+                }
+              },
+              "message" : {
+                "text" : "item.match(imgRegex)"
+              }
+            }
+          }, {
+            "location" : {
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "routes/index.js",
+                  "uriBaseId" : "%SRCROOT%",
+                  "index" : 0
+                },
+                "region" : {
+                  "startLine" : 84,
+                  "startColumn" : 15,
+                  "endColumn" : 38
+                }
+              },
+              "message" : {
+                "text" : "item.ma ... gex)[1]"
+              }
+            }
+          }, {
+            "location" : {
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "routes/index.js",
+                  "uriBaseId" : "%SRCROOT%",
+                  "index" : 0
+                },
+                "region" : {
+                  "startLine" : 84,
+                  "startColumn" : 9,
+                  "endColumn" : 38
+                }
+              },
+              "message" : {
+                "text" : "url"
+              }
+            }
+          }, {
+            "location" : {
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "routes/index.js",
+                  "uriBaseId" : "%SRCROOT%",
+                  "index" : 0
+                },
+                "region" : {
+                  "startLine" : 88,
+                  "startColumn" : 24,
+                  "endColumn" : 27
+                }
+              },
+              "message" : {
+                "text" : "url"
+              }
+            }
+          }, {
+            "location" : {
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "routes/index.js",
+                  "uriBaseId" : "%SRCROOT%",
+                  "index" : 0
+                },
+                "region" : {
+                  "startLine" : 88,
+                  "startColumn" : 10,
+                  "endColumn" : 27
+                }
+              },
+              "message" : {
+                "text" : "'identify ' + url"
+              }
+            }
+          } ]
+        } ]
+      } ],
+      "relatedLocations" : [ {
+        "id" : 1,
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "routes/index.js",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 0
+          },
+          "region" : {
+            "startLine" : 81,
+            "startColumn" : 14,
+            "endColumn" : 22
+          }
+        },
+        "message" : {
+          "text" : "user-provided value"
+        }
+      } ]
+    } ],
+    "newlineSequences" : [ "\r\n", "\n", " ", " " ],
+    "columnKind" : "utf16CodeUnits",
+    "properties" : {
+      "semmle.formatSpecifier" : "sarif-latest"
+    }
+  } ]
+}

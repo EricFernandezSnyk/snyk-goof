@@ -1,13 +1,33 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.14.0
-ignore: {}
-# patches apply the minimum changes required to fix a vulnerability
-patch:
-  'npm:http-signature:20150122':
-    - tap > codecov.io > request > http-signature:
-        patched: '2020-02-07T14:30:00.093Z'
+version: v1.25.0
+# ignores vulnerabilities until expiry date; change duration by modifying expiry date
+ignore:
+  SNYK-JS-NCONF-2395478:
+    - '*':
+        reason: None Given
+        expires: 2022-06-02T13:31:56.281Z
+        created: 2022-05-03T13:31:56.286Z
+  SNYK-CC-TF-50:
+    - '*':
+        reason: None Given
+        expires: 2022-09-02T13:31:56.281Z
+        created: 2022-05-03T13:31:56.286Z
+  SNYK-CC-TF-98:
+    - '*':
+        reason: None Given
+        expires: 2022-09-02T13:31:56.281Z
+        created: 2022-05-03T13:31:56.286Z
+  SNYK-JS-HANDLEBARS-534988:
+    - '*':
+        reason: None Given
+        expires: 2022-08-27T13:19:46.508Z
+        created: 2022-07-28T13:19:46.515Z
+  SNYK-JS-HANDLEBARS-173692:
+    - '*':
+        reason: None Given
+        expires: 2022-10-28T09:15:01.765Z
+        created: 2022-09-28T09:15:01.771Z
 exclude:
   global:
-    - iac/public_access.tf
-    - iac
-  
+    - '*/tests'
+patch: {}
