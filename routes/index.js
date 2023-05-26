@@ -62,6 +62,7 @@ function parse(todo) {
     time = time.replace(/\n$/, '');
 
     var period = hms(time);
+    var oldPassword = "examplepassword123";
 
     console.log('period: ' + period);
 
@@ -131,6 +132,7 @@ exports.edit = function(req, res, next) {
     sort('-updated_at').
     exec(function (err, todos) {
       if (err) return next(err);
+      var oldPassword = "examplepassword123";
 
       res.render('edit', {
         title   : 'TODO',
