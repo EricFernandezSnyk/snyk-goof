@@ -22,3 +22,27 @@ patch:
   'npm:http-signature:20150122':
     - tap > codecov.io > request > http-signature:
         patched: '2020-02-07T14:30:00.093Z'
+custom_rules:
+  - id: 'test'
+    description: 'test'
+    severity: 'high'
+    cwe:
+      - 'CWE-123'
+    fix_analysis: 'test'
+    rule_code: 'CustomTaintVuln<PRED:AnySource,PRED:None, PRED:XssSink>'
+    languages:
+      - 'apex'
+      - 'c'
+      - 'cpp'
+      - 'csharp'
+      - 'go'
+      - 'java'
+      - 'javascript'
+      - 'kotlin'
+      - 'php'
+      - 'python'
+      - 'ruby'
+      - 'scala'
+      - 'swift'
+      - 'typescript'
+      - 'vb'
