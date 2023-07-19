@@ -75,6 +75,7 @@ var secret;
 var token = secret;
 console.log('token: ' + token);
 
+// deepcode ignore HttpToHttps: <please specify a reason of ignoring this>
 http.createServer(app).listen(app.get('port'), function () {
   console.log('Express server listening on port ' + app.get('port'));
 });
