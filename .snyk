@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.25.0
+version: v1.25.1
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
   SNYK-JS-HANDLEBARS-534988:
@@ -22,27 +22,37 @@ patch:
   'npm:http-signature:20150122':
     - tap > codecov.io > request > http-signature:
         patched: '2020-02-07T14:30:00.093Z'
+  'npm:hawk:20160119':
+    - tap > codecov.io > request > hawk:
+        patched: '2023-08-30T15:15:15.688Z'
+        id: 'npm:hawk:20160119'
+        path: tap > codecov.io > request > hawk
+  'npm:mime:20170907':
+    - tap > codecov.io > request > form-data > mime:
+        patched: '2023-08-30T15:15:15.688Z'
+        id: 'npm:mime:20170907'
+        path: tap > codecov.io > request > form-data > mime
 custom_rules:
-  - id: 'test'
-    description: 'test'
-    severity: 'high'
+  - id: test
+    description: test
+    severity: high
     cwe:
-      - 'CWE-123'
-    fix_analysis: 'test'
+      - CWE-123
+    fix_analysis: test
     rule_code: 'CustomTaintVuln<PRED:AnySource,PRED:None, PRED:XssSink>'
     languages:
-      - 'apex'
-      - 'c'
-      - 'cpp'
-      - 'csharp'
-      - 'go'
-      - 'java'
-      - 'javascript'
-      - 'kotlin'
-      - 'php'
-      - 'python'
-      - 'ruby'
-      - 'scala'
-      - 'swift'
-      - 'typescript'
-      - 'vb'
+      - apex
+      - c
+      - cpp
+      - csharp
+      - go
+      - java
+      - javascript
+      - kotlin
+      - php
+      - python
+      - ruby
+      - scala
+      - swift
+      - typescript
+      - vb
